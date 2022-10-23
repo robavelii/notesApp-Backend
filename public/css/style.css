@@ -1,0 +1,29 @@
+ @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+
+ html{
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2.5rem;
+ }
+ body{
+    min-height: 100vh;
+    /*background-color: rgb(84, 135, 225);*/
+    background: hsla(328, 75%, 45%, 1);
+
+   background: linear-gradient(90deg, hsla(328, 75%, 45%, 1) 0%, hsla(269, 85%, 41%, 1) 100%);
+
+   background: -moz-linear-gradient(90deg, hsla(328, 75%, 45%, 1) 0%, hsla(269, 85%, 41%, 1) 100%);
+
+   background: -webkit-linear-gradient(90deg, hsla(328, 75%, 45%, 1) 0%, hsla(269, 85%, 41%, 1) 100%);
+
+   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#C81D77", endColorstr="#6710C2", GradientType=1 );
+    color: whitesmoke;
+    display: grid;
+    place-content: center;
+    padding: 1rem;
+ }
