@@ -1,7 +1,3 @@
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https//www.robavelii.com',
-  'https://robavelii.com',
-];
+const allowedOrigins = ['https://notes-app-front-end-dun.vercel.app/'];
 
 module.exports = allowedOrigins;
