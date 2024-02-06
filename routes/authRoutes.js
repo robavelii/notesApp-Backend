@@ -6,7 +6,7 @@ const loginLimitter = require('../middleware/loginLimitter');
 
 router.route('/').post(loginLimitter, authController.login);
 
-router.route('/admin').post(authController.create);
+router.route('/admin').post(authController.createUser);
 
 router.route('/refresh').get(authController.refresh);
 
