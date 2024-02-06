@@ -3,6 +3,48 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 
+
+/**
+ * @route Post  /users
+ * @desc Create admin user
+ * @access Private
+ */
+const createUser = asyncHandler(async (req, res) => {
+  const { username, password, roles } = req.body;
+
+  // confirm data
+  if (!username || !password) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  // Check for duplicate
+  const duplicate = await User.findOne({ username })
+    .collation({ locale: 'en', strength: 2 })
+    .lean()
+    .exec();
+
+  if (duplicate) {
+    return res.status(409).json({ message: 'Username already exists' });
+  }
+
+  // Hash password
+  const hashPassword = await bcrypt.hash(password, 10); //salt password
+
+  const userObject =
+    !Array.isArray(roles) || !roles.length
+      ? { username, password: hashPassword }
+      : { username, password: hashPassword, roles };
+
+  // create and store
+  const user = await User.create(userObject);
+
+  if (user) {
+    res.status(201).json({ message: `New user ${username} created` });
+  } else {
+    res.status(400).json({ message: 'Invalid user data inserted' });
+  }
+});
+
 // @desc Login
 // @route POST /auth
 // @access Public
